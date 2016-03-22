@@ -19,14 +19,15 @@ feature "user views list of questions" do
     expect(page).to have_content(question.title)
   end
 
-  # scenario "most recent question is listed first" do
-  #   question1 = Question.create(title: "How can I be the very best like no one ever was?",
-  #   description: "asdkljfalksjdfkajsdklfjhaleuhfkahdfkahusdfhasdkfhaejfaljsef;ajsfo;aisfjaldskfjkasjdf")
-  #   question2 = Question.create(title: "HerpderpHerpderpHerpderpHerpderpHerpderpHerpderp",
-  #   description: "asdkljfalksjdfkajsdklfjhaleuhfkahdfkahusdfhasdkfhaejfaljsef;ajsfo;aisfjaldskfjkasjdf")
-  #
-  #   visit questions_path
-  #   expect(question1.title).to appear_before(question2.title)
-  # end
-  # Unsure how to test for this. I installed a gem called orderly that should do it, but it's not working.
+  scenario "most recent question is listed first" do
+    question1 = Question.create(title: "How can I be the very best like no one ever was?",
+    description: "asdkljfalksjdfkajsdklfjhaleuhfkahdfkahusdfhasdkfhaejfaljsef;ajsfo;aisfjaldskfjkasjdf")
+    question2 = Question.create(title: "HerpderpHerpderpHerpderpHerpderpHerpderpHerpderp",
+    description: "asdkljfalksjdfkajsdklfjhaleuhfkahdfkahusdfhasdkfhaejfaljsef;ajsfo;aisfjaldskfjkasjdf")
+    question3 = Question.create(title: "The quick, brown fox jumps over a lazy dog", description: "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs")
+    question4 = Question.create(title: "Sed ut perspiciatis unde omnis iste natus", description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veri")
+
+    visit questions_path
+    expect(page).to_not have_content(question1.title)
+  end
 end

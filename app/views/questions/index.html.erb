@@ -3,3 +3,5 @@
 <% @questions.each do |question| %>
 <li><%= question.title %></li>
 <% end %>
+
+<%= will_paginate @questions %>
