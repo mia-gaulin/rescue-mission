@@ -1,7 +1,9 @@
 <h1>Questions</h1>
 
+<b><%= link_to 'Post a question', new_question_path %></b><br /><br>
+
 <% @questions.each do |question| %>
-<li><a href="/questions/<%= question.id %>"><%= question.title %></a></li>
+<li><%= link_to question.title, question %></li><br />
 <% end %>
 
 <%= will_paginate @questions %>
