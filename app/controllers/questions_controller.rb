@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
-    @answers = @question.answers.order(created_at: :asc)
+    @answers = @question.answers.order(created_at: :asc).paginate(:page => params[:page], :per_page => 3)
     @answer = Answer.new
   end
 
