@@ -1,3 +1,5 @@
 <h1><u><%= @question.title %></u></h1>
 
 <h3><%= @question.description %></h2>
+
+<%= link_to 'Post an answer to this question', new_question_answer_path(@question) %>

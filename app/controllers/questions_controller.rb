@@ -1,10 +1,12 @@
 class QuestionsController < ApplicationController
   def index
-    @questions = Question.order('created_at DESC').paginate(:page => params[:page], :per_page => 3)
+    @questions = Question.order(:created_at).paginate(:page => params[:page], :per_page => 3)
   end
 
   def show
     @question = Question.find(params[:id])
+    @answers = @question.answers.order(created_at: :asc)
+    @answer = Answer.new
   end
 
   def new

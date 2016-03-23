@@ -1,0 +1,13 @@
+$main-color: #c6d4e3;
+$font-sans: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+body {
+  background-color: $main-color;
+  font-family: $font-sans;
+}
+
+.flash {
+  padding: 1em;
+  background-color: #3B9089;
+  text-color: #FFFFFF;
+}

@@ -1,0 +1,9 @@
+Submit an answer for <%= @question.title %>
+
+Answers should be at least 50 characters.
+
+<%= form_for [@question, @answer] do |f| %>
+  <%= f.label :description %>:
+  <%= f.text_field :description %>
+  <%= f.submit "Submit answer" %>
+<% end %>

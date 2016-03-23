@@ -27,6 +27,8 @@ gem 'launchy', group: [:development, :test]
 gem 'factory_girl', group: [:development, :test]
 gem 'orderly'
 gem 'will_paginate', '~> 3.0.5'
+gem 'foundation-rails'
+gem 'pry-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

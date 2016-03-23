@@ -3,4 +3,5 @@ class Answer < ActiveRecord::Base
 
   validates :description, presence: true
   validates :description, length: { minimum: 50 }
+  validates :question, presence: true
 end
