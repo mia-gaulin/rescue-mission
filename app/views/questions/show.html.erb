@@ -2,10 +2,12 @@
 
 <h3><%= @question.description %></h3>
 
+<%= link_to 'Edit question', edit_question_path(@question) %>
+
 <h4>Answers:</h4>
 
 <% @answers.each do |answer| %>
 <li><%= answer.description %></li>
-<% end %>
+<% end %><br />
 
 <%= link_to 'Post an answer to this question', new_question_answer_path(@question) %>
