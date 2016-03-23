@@ -13,7 +13,9 @@
   </div><br />
 
   <div class="field">
-    <%= f.submit "Update" %>
+    <%= f.submit "Update question" %>
   </div>
 
 <% end %>
+
+<%= button_to "Delete question", question_path(@question), method: :delete %>

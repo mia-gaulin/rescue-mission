@@ -1,17 +1,17 @@
 require "rails_helper"
 
-feature "user may edit a question" do
+feature "user may delete a question" do
   # As a user
-  # I want to edit a question
-  # So that I can correct any mistakes or add updates
+  # I want to delete a question
+  # So that I can delete duplicate questions
   #
   # Acceptance Criteria
   #
-  # - I must provide valid information
-  # - I must be presented with errors if I fill out the form incorrectly
-  # - I must be able to get to the edit page from the question details page
+  # - I must be able delete a question from the question edit page
+  # - I must be able delete a question from the question details page
+  # - All answers associated with the question must also be deleted
 
-  scenario "user can edit a question" do
+  scenario "user can access delete page from question details page" do
     question1 = Question.create(title: "How can I be the very best like no one ever was?",
     description: "asdkljfalksjdfkajsdklfjhaleuhfkahdfkahusdfhasdkfhaejfaljsef;ajsfo;aisfjaldskfjkasjdf")
     question2 = Question.create(title: "HerpderpHerpderpHerpderpHerpderpHerpderpHerpderp",
@@ -22,12 +22,10 @@ feature "user may edit a question" do
     visit questions_path
     click_link question3.title
 
-    expect(page).to have_content(question3.title)
-    expect(page).to have_content(question3.description)
-    expect(page).to have_link "Edit question"
+    expect(page).to have_button "Delete question"
   end
 
-  scenario "user successfully edits a question" do
+  scenario "user can access delete page from question edit page" do
     question1 = Question.create(title: "How can I be the very best like no one ever was?",
     description: "asdkljfalksjdfkajsdklfjhaleuhfkahdfkahusdfhasdkfhaejfaljsef;ajsfo;aisfjaldskfjkasjdf")
     question2 = Question.create(title: "HerpderpHerpderpHerpderpHerpderpHerpderpHerpderp",
@@ -39,13 +37,10 @@ feature "user may edit a question" do
     click_link question3.title
     click_link "Edit question"
 
-    fill_in "Title", with: "The quick, brown fox jumps over a lazy cat"
-    click_button "Update"
-    expect(page).to have_content "Question updated!"
-    expect(page).to have_content "The quick, brown fox jumps over a lazy cat"
+    expect(page).to have_button "Delete question"
   end
 
-  scenario "user edits a question with invalid info" do
+  scenario "question is successfully deleted" do
     question1 = Question.create(title: "How can I be the very best like no one ever was?",
     description: "asdkljfalksjdfkajsdklfjhaleuhfkahdfkahusdfhasdkfhaejfaljsef;ajsfo;aisfjaldskfjkasjdf")
     question2 = Question.create(title: "HerpderpHerpderpHerpderpHerpderpHerpderpHerpderp",
@@ -55,10 +50,9 @@ feature "user may edit a question" do
 
     visit questions_path
     click_link question3.title
-    click_link "Edit question"
+    click_button "Delete question"
 
-    fill_in "Title", with: "lol"
-    click_button "Update question"
-    expect(page).to have_content "Question not updated, please check your input."
+    expect(page).to_not have_content question3.title
+    expect(page).to have_content question4.title
   end
 end
